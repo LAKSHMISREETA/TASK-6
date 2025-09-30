@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Let's Connect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .form-container {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .form-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .form-side {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .form-side h2 {
+            color: #764ba2;
+            font-size: 28px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .form-side h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #667eea;
+        }
+        
+        .form-side p {
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .features {
+            margin-top: 20px;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .feature i {
+            width: 30px;
+            height: 30px;
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+            transition: color 0.3s;
+        }
+        
+        .input-with-icon {
+            position: relative;
+        }
+        
+        .input-with-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            transition: color 0.3s;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            border: 2px solid #e1e5ee;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+            background: #f8f9fa;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+        
+        .form-control:focus + i {
+            color: #667eea;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+            padding-left: 15px;
+        }
+        
+        .error {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s;
+        }
+        
+        .error.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .error i {
+            margin-right: 5px;
+        }
+        
+        .field-error {
+            border-color: #e74c3c;
+        }
+        
+        .field-valid {
+            border-color: #2ecc71;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(to right, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 16px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+        
+        .submit-btn i {
+            margin-left: 8px;
+            transition: transform 0.3s;
+        }
+        
+        .submit-btn:hover i {
+            transform: translateX(5px);
+        }
+        
+        .submit-btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .submit-btn:disabled:hover i {
+            transform: none;
+        }
+        
+        .success-message {
+            background: linear-gradient(to right, #2ecc71, #1abc9c);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+            animation: slideUp 0.5s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .success-message.show {
+            display: block;
+        }
+        
+        .success-message i {
+            font-size: 24px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .character-count {
+            text-align: right;
+            font-size: 14px;
+            color: #999;
+            margin-top: 5px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-3px);
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Let's Get In Touch!</h1>
+            <p>We're excited to hear from you. Send us a message and we'll respond as soon as possible.</p>
+        </div>
+        
+        <div class="form-container">
+            <div class="form-side">
+                <h2>Why Contact Us?</h2>
+                <p>Have questions, suggestions, or just want to say hello? We're here to help and would love to hear from you. Our team typically responds within 24 hours.</p>
+                
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-rocket"></i>
+                        <span>Quick response time</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Your data is safe with us</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-users"></i>
+                        <span>Friendly support team</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-gift"></i>
+                        <span>Special offers for new contacts</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-side">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <div class="input-with-icon">
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Enter your full name">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="error" id="nameError">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>Please enter your name</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <div class="input-with-icon">
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email address">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="error" id="emailError">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>Please enter a valid email address</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" class="form-control" placeholder="Enter your message here..."></textarea>
+                        <div class="character-count">
+                            <span id="charCount">0</span>/500 characters
+                        </div>
+                        <div class="error" id="messageError">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>Please enter your message</span>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        Send Message <i class="fas fa-paper-plane"></i>
+                    </button>
+                    
+                    <div class="success-message" id="successMessage">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Message Sent Successfully!</h3>
+                        <p>Thank you for contacting us. We'll get back to you soon.</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2023 Your Friend's Company. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contactForm');
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const messageInput = document.getElementById('message');
+            const nameError = document.getElementById('nameError');
+            const emailError = document.getElementById('emailError');
+            const messageError = document.getElementById('messageError');
+            const successMessage = document.getElementById('successMessage');
+            const charCount = document.getElementById('charCount');
+            const submitBtn = document.querySelector('.submit-btn');
+            
+            // Email validation regex
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            // Update character count for message
+            messageInput.addEventListener('input', function() {
+                charCount.textContent = messageInput.value.length;
+                
+                if (messageInput.value.length > 500) {
+                    charCount.style.color = '#e74c3c';
+                } else {
+                    charCount.style.color = '#999';
+                }
+            });
+            
+            // Validate name field
+            function validateName() {
+                if (nameInput.value.trim() === '') {
+                    nameError.classList.add('show');
+                    nameInput.classList.add('field-error');
+                    nameInput.classList.remove('field-valid');
+                    return false;
+                } else {
+                    nameError.classList.remove('show');
+                    nameInput.classList.remove('field-error');
+                    nameInput.classList.add('field-valid');
+                    return true;
+                }
+            }
+            
+            // Validate email field
+            function validateEmail() {
+                if (emailInput.value.trim() === '') {
+                    emailError.querySelector('span').textContent = 'Please enter your email address';
+                    emailError.classList.add('show');
+                    emailInput.classList.add('field-error');
+                    emailInput.classList.remove('field-valid');
+                    return false;
+                } else if (!emailRegex.test(emailInput.value.trim())) {
+                    emailError.querySelector('span').textContent = 'Please enter a valid email address';
+                    emailError.classList.add('show');
+                    emailInput.classList.add('field-error');
+                    emailInput.classList.remove('field-valid');
+                    return false;
+                } else {
+                    emailError.classList.remove('show');
+                    emailInput.classList.remove('field-error');
+                    emailInput.classList.add('field-valid');
+                    return true;
+                }
+            }
+            
+            // Validate message field
+            function validateMessage() {
+                if (messageInput.value.trim() === '') {
+                    messageError.classList.add('show');
+                    messageInput.classList.add('field-error');
+                    messageInput.classList.remove('field-valid');
+                    return false;
+                } else if (messageInput.value.length > 500) {
+                    messageError.querySelector('span').textContent = 'Message must be less than 500 characters';
+                    messageError.classList.add('show');
+                    messageInput.classList.add('field-error');
+                    messageInput.classList.remove('field-valid');
+                    return false;
+                } else {
+                    messageError.classList.remove('show');
+                    messageInput.classList.remove('field-error');
+                    messageInput.classList.add('field-valid');
+                    return true;
+                }
+            }
+            
+            // Real-time validation
+            nameInput.addEventListener('blur', validateName);
+            emailInput.addEventListener('blur', validateEmail);
+            messageInput.addEventListener('blur', validateMessage);
+            
+            // Clear validation on input
+            nameInput.addEventListener('input', function() {
+                if (nameInput.classList.contains('field-error')) {
+                    nameError.classList.remove('show');
+                    nameInput.classList.remove('field-error');
+                }
+            });
+            
+            emailInput.addEventListener('input', function() {
+                if (emailInput.classList.contains('field-error')) {
+                    emailError.classList.remove('show');
+                    emailInput.classList.remove('field-error');
+                }
+            });
+            
+            messageInput.addEventListener('input', function() {
+                if (messageInput.classList.contains('field-error')) {
+                    messageError.classList.remove('show');
+                    messageInput.classList.remove('field-error');
+                }
+            });
+            
+            // Form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const isNameValid = validateName();
+                const isEmailValid = validateEmail();
+                const isMessageValid = validateMessage();
+                
+                if (isNameValid && isEmailValid && isMessageValid) {
+                    // Change button text to show loading state
+                    submitBtn.innerHTML = 'Sending <i class="fas fa-spinner fa-spin"></i>';
+                    submitBtn.disabled = true;
+                    
+                    // Simulate API call delay
+                    setTimeout(function() {
+                        // Show success message
+                        successMessage.classList.add('show');
+                        form.reset();
+                        
+                        // Reset character count
+                        charCount.textContent = '0';
+                        charCount.style.color = '#999';
+                        
+                        // Remove validation styling
+                        nameInput.classList.remove('field-valid');
+                        emailInput.classList.remove('field-valid');
+                        messageInput.classList.remove('field-valid');
+                        
+                        // Reset button
+                        submitBtn.innerHTML = 'Send Message <i class="fas fa-paper-plane"></i>';
+                        submitBtn.disabled = false;
+                        
+                        // Hide success message after 5 seconds
+                        setTimeout(function() {
+                            successMessage.classList.remove('show');
+                        }, 5000);
+                    }, 1500);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
